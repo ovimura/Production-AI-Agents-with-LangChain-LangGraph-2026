@@ -55,8 +55,37 @@ def demo_streaming():
     print()
 
 
+def demo_schema_inspection():
+    """Demonstrate input/output schema inspection."""
+    prompt = ChatPromptTemplate.from_template("Summarize the following text: {text}")
+    model = ChatAnthropic(model="claude-sonnet-4-5-20250929", temperature=0.7)
+    parser = StrOutputParser()
+
+    chain = prompt | model | parser
+
+    input_schema = chain.input_schema.model_json_schema()
+    output_schema = chain.output_schema.model_json_schema()
+
+    print(f"Input Schema: {input_schema}")
+    print(f"Output schema: {output_schema}")
+
+
+def exercise_first_chain():
+    """
+        Exercise:
+        Create a chain that:
+        - Take a product name and target audience
+        - Generate a marketing tagline
+        - Returns just the tagline as a string
+
+        Test with: product="AI Course", audience="developers"
+    """
+    pass
+
 
 if __name__ == "__main__":
     # demo_basic_chain()
     # demo_batch_execution()
-    demo_streaming()
+    # demo_streaming()
+    # demo_schema_inspection()
+    exercise_first_chain()
