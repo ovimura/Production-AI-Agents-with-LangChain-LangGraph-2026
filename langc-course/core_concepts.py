@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 from langchain_anthropic import ChatAnthropic
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from langchain.chat_models import init_chat_model
 
 
 load_dotenv()
@@ -88,6 +89,12 @@ def exercise_first_chain():
 
     tagline = chain.invoke({"product": "AI Course", "audience": "students"})
     print(f"tagline: {tagline}")
+
+
+def new_way():
+    """the universal way to initialize a model"""
+    model = init_chat_model(model="claude-sonnet-4-5-20250929", temperature=0.7, max_tokens=1500)
+    print(model)
 
 
 
