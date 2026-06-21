@@ -80,7 +80,15 @@ def exercise_first_chain():
 
         Test with: product="AI Course", audience="developers"
     """
-    pass
+    prompt = ChatPromptTemplate.from_template("Generate a marketing tagline for a product named '{product}' targeting '{audience}'.")
+    model = ChatAnthropic(model="claude-sonnet-4-5-20250929", temperature=0.7)
+    parser = StrOutputParser()
+
+    chain = prompt | model | parser
+
+    tagline = chain.invoke({"product": "AI Course", "audience": "students"})
+    print(f"tagline: {tagline}")
+
 
 
 if __name__ == "__main__":
