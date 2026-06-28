@@ -18,7 +18,8 @@ from langchain_core.runnables import (
 
 load_dotenv()
 
-model = init_chat_model(model="gpt-4o-mini", temperature=0)
+# model = init_chat_model(model="gpt-4o-mini", temperature=0)
+model = init_chat_model(model="claude-sonnet-4-5-20250929", temperature=0)
 
 
 def demo_basic_chain():
