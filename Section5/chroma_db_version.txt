@@ -1,0 +1,28 @@
+Important: Python Version for ChromaDB (Use 3.11 or 3.12)
+If you are using Python 3.14 and run into issues with ChromaDB, this is expected right now. Python 3.14 is very new and most 
+libraries have not fully caught up yet. ChromaDB relies on Pydantic for configuration, and the version it uses internally (Pydantic v1) 
+has known compatibility issues with Python 3.14's updated type inference and typing internals.
+
+Recommended solution: use Python 3.11 or 3.12. These versions are currently the safest choices for ChromaDB and most AI/ML libraries.
+
+Using pyenv:
+
+pyenv install 3.12.2
+pyenv local 3.12.2
+Using uv or conda:
+
+uv venv --python 3.12
+or create a new conda env with Python 3.12
+
+
+Why this happens:
+
+Python 3.14 introduced changes to how types are handled internally, and many libraries 
+(including Pydantic v1 and projects built on top of it like ChromaDB) need time to update 
+and release compatible versions. ChromaDB will likely support Python 3.14 in a future release once those updates are in place.
+
+
+
+Pro tip: For production-grade AI/ML projects, stick with Python 3.11 or 3.12 for now. They are stable, fast, 
+and have the best ecosystem and library compatibility. If you are on 3.14 and things are breaking, do not debug for 
+hours - just switch your environment to Python 3.11 or 3.12 and rerun the Chroma sections.
